@@ -1,5 +1,4 @@
 package bit.minisys.minicc;
-
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import bit.minisys.minicc.MiniCCCfg;
 import bit.minisys.minicc.codegen.MiniCCCodeGen;
 import bit.minisys.minicc.icgen.MiniCCICGen;
 import bit.minisys.minicc.optimizer.MiniCCOptimizer;
@@ -212,7 +212,7 @@ public class MiniCCompiler {
         String[] args2 = { iFile , oFile};  //定义参数  
         PythonInterpreter.initialize(null, null, args2);//设置参数  
 		PythonInterpreter interpreter = new PythonInterpreter(); //使用jython，执行python
-        interpreter.(path );
+        interpreter.execfile(path );
         //另一种方式，调用本机
         //Runtime.getRuntime().exec(path + " " + iFile + " " + oFile);
 	}
