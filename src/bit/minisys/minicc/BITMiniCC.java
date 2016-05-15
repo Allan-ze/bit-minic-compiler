@@ -7,12 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.python.util.PythonInterpreter;
 import org.xml.sax.SAXException;
 public class BITMiniCC {
-	/**
-	 * @param args
-	 * @throws IOException 
-	 * @throws SAXException 
-	 * @throws ParserConfigurationException 
-	 */
 	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		//System.out.println(System.getProperty("user.dir"));
 		  
