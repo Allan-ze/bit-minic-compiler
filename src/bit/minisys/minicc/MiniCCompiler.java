@@ -6,6 +6,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.python.antlr.PythonParser.elif_clause_return;
+import org.python.util.PythonInterpreter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -95,7 +97,11 @@ public class MiniCCompiler {
 		if(pp.skip.equals("false")){
 			if(pp.type.equals("java")){
 				prep.run(cFile, ppOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(cFile, ppOutFile, pp.path);
+			}
+			else{
 				this.run(cFile, ppOutFile, pp.path);
 			}
 		}
@@ -106,7 +112,11 @@ public class MiniCCompiler {
 		if(scanning.skip.equals("false")){
 			if(scanning.type.equals("java")){
 				sc.run(ppOutFile, scOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(ppOutFile, scOutFile, scanning.path);
+			}
+			else{
 				this.run(ppOutFile, scOutFile, scanning.path);
 			}
 		}
@@ -117,7 +127,11 @@ public class MiniCCompiler {
 		if(parsing.skip.equals("false")){
 			if(parsing.type.equals("java")){
 				p.run(scOutFile, pOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(scOutFile, pOutFile, parsing.path);
+			}
+			else{
 				this.run(scOutFile, pOutFile, parsing.path);
 			}
 		}
@@ -128,7 +142,11 @@ public class MiniCCompiler {
 		if(semantic.skip.equals("false")){
 			if(semantic.type.equals("java")){
 				se.run(pOutFile, seOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(pOutFile, seOutFile, semantic.path);
+			}
+			else{
 				this.run(pOutFile, seOutFile, semantic.path);
 			}
 		}
@@ -139,7 +157,11 @@ public class MiniCCompiler {
 		if(icgen.skip.equals("false")){
 			if(icgen.type.equals("java")){
 				ic.run(seOutFile, icOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(seOutFile, icOutFile, icgen.path);
+			}
+			else{
 				this.run(seOutFile, icOutFile, icgen.path);
 			}
 		}
@@ -150,7 +172,11 @@ public class MiniCCompiler {
 		if(optimizing.skip.equals("false")){
 			if(optimizing.type.equals("java")){
 				o.run(icOutFile, oOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(icOutFile, oOutFile, optimizing.path);
+			}
+			else{
 				this.run(icOutFile, oOutFile, optimizing.path);
 			}
 		}
@@ -161,7 +187,11 @@ public class MiniCCompiler {
 		if(codegen.skip.equals("false")){
 			if(codegen.type.equals("java")){
 				g.run(oOutFile, cOutFile);
-			}else{
+			}
+			else if (scanning.type.equals("python")) {
+				this.runjython(oOutFile, cOutFile, codegen.path);
+			}
+			else{
 				this.run(oOutFile, cOutFile, codegen.path);
 			}
 		}
@@ -177,5 +207,13 @@ public class MiniCCompiler {
 	private void run(String iFile, String oFile, String path) throws IOException{
 		Runtime rt = Runtime.getRuntime();//格式：exe名 输入文件 输出文件
 		rt.exec(path + " " + iFile + " " + oFile);
+	}
+	private void runjython(String iFile, String oFile, String path) throws IOException{
+        String[] args2 = { iFile , oFile};  //定义参数  
+        PythonInterpreter.initialize(null, null, args2);//设置参数  
+		PythonInterpreter interpreter = new PythonInterpreter(); //使用jython，执行python
+        interpreter.(path );
+        //另一种方式，调用本机
+        //Runtime.getRuntime().exec(path + " " + iFile + " " + oFile);
 	}
 }
