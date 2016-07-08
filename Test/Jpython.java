@@ -10,8 +10,10 @@ import org.python.util.PythonInterpreter;
 public class Jpython {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+		// TODO 测试java调用python,两种方式
+		// 第一种是使用./lib/ 下的jpython包
+		// 第二种是使用Runtime 执行 python runtime.py
+		// 所有python语言均是python2
         //定义参数  
         String[] args2 = {"arg1","arg2"};  
         //设置参数  

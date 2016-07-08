@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="Test"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jdom.jar"/>
@@ -14,6 +13,6 @@
 	<classpathentry kind="lib" path="lib/semantic.jar"/>
 	<classpathentry kind="lib" path="lib/simulator.jar"/>
 	<classpathentry kind="lib" path="lib/util.jar"/>
-	<classpathentry kind="lib" path="D:/大三下/编译原理/jython-standalone-2.5.4-rc1.jar"/>
+	<classpathentry kind="lib" path="D:/Java/Workspace/BIT-MiniCC-Clean/lib/jython-standalone-2.5.4-rc1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

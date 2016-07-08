@@ -209,11 +209,12 @@ public class MiniCCompiler {
 		rt.exec(path + " " + iFile + " " + oFile);
 	}
 	private void runjython(String iFile, String oFile, String path) throws IOException{
-        String[] args2 = { iFile , oFile};  //定义参数  
-        PythonInterpreter.initialize(null, null, args2);//设置参数  
-		PythonInterpreter interpreter = new PythonInterpreter(); //使用jython，执行python
-        interpreter.execfile(path );
-        //另一种方式，调用本机
-        //Runtime.getRuntime().exec(path + " " + iFile + " " + oFile);
+//      String[] args2 = { iFile , oFile};  //定义参数  
+//      PythonInterpreter.initialize(null, null, args2);//设置参数  
+//		PythonInterpreter interpreter = new PythonInterpreter(); //使用jython，执行python
+//		interpreter.execfile(path);
+        //另一种方式，调用本机Runtime
+		//System.out.println(path+" "+" data\\"+iFile+ " data\\"+oFile);
+        Runtime.getRuntime().exec("python "+path + " data\\" + iFile + " data\\" + oFile);
 	}
 }
